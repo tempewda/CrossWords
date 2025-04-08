@@ -15,8 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
+    # Path for the Django admin site
     path('admin/', admin.site.urls),
+
+    # Include the URL patterns from the 'store' app
+    # The first argument '' means these patterns will be accessible directly from the site root (e.g., http://127.0.0.1:8000/)
+    path('', include('store.urls')),
+
+    # You could include store urls under a prefix like '/books/' instead:
+    # path('books/', include('store.urls')),
 ]
